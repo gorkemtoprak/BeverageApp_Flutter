@@ -1,76 +1,25 @@
-import 'package:e_commerce_full/ecommerce/cart/widgets/cart_product_widget.dart';
-import 'package:e_commerce_full/ecommerce/home/home_view.dart';
-import 'package:e_commerce_full/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CartView extends StatelessWidget {
-  const CartView({Key? key}) : super(key: key);
+import '../../../blocs/cart/cart_bloc.dart';
+
+class OrderSummaryWidget extends StatelessWidget {
+  const OrderSummaryWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Cart',
-          style: Theme.of(context)
-              .textTheme
-              .headline2!
-              .copyWith(color: Colors.black),
-        ),
-      ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 10,
-            bottom: 120,
-          ),
-          child: Column(
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        if (state is CartLoading) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          );
+        }
+        if (state is CartLoaded) {
+          return Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Add \$20 for free delivery',
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeView(),
-                          ));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      shape: const RoundedRectangleBorder(),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      'Add More Items',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CartProductWidget(
-                productModel: ProductModel.products[0],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               const Divider(
                 thickness: 2,
               ),
@@ -87,7 +36,7 @@ class CartView extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '\$5.98',
+                          '\$${state.cartModel.subtotalString}',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
@@ -104,7 +53,7 @@ class CartView extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '\$3.00',
+                          '\$${state.cartModel.deliveryFeeString}',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
@@ -135,7 +84,7 @@ class CartView extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            '8.98',
+                            '\$${state.cartModel.totalString}',
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -149,9 +98,11 @@ class CartView extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ),
-      ),
+          );
+        } else {
+          return const Text('error');
+        }
+      },
     );
   }
 }

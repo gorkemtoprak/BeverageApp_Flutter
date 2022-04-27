@@ -1,7 +1,9 @@
-import 'package:e_commerce_full/ecommerce/product/product_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../blocs/cart/cart_bloc.dart';
 import '../../../models/product_model.dart';
+import '../../product/product_view.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final List<ProductModel>? product;
@@ -71,13 +73,31 @@ class ProductCardWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.add_circle,
-                              color: Colors.black,
-                            ),
-                          )
+                          BlocBuilder<CartBloc, CartState>(
+                            builder: (context, state) {
+                              if (state is CartLoading) {
+                                return const Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }
+                              if (state is CartLoaded) {
+                                return IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<CartBloc>()
+                                        .add(AddProduct(product![index]));
+                                  },
+                                  icon: const Icon(
+                                    Icons.add_circle_outline_sharp,
+                                  ),
+                                );
+                              } else {
+                                return const Text('Something went wrong!');
+                              }
+                            },
+                          ),
                         ],
                       ),
                     )

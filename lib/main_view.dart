@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:e_commerce_full/core/navigation/router.gr.dart';
 import 'package:flutter/material.dart';
+
+import 'core/navigation/router.gr.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);

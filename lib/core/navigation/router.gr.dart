@@ -13,10 +13,10 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
-import '../../ecommerce/cart/cart_view.dart' as _i3;
-import '../../ecommerce/home/home_view.dart' as _i2;
-import '../../ecommerce/profile/profile_view.dart' as _i4;
 import '../../main_view.dart' as _i1;
+import '../../views/cart/cart_view.dart' as _i3;
+import '../../views/home/home_view.dart' as _i2;
+import '../../views/profile/profile_view.dart' as _i4;
 
 class AppRouter extends _i5.RootStackRouter {
   AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])

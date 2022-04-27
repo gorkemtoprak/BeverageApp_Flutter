@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:e_commerce_full/ecommerce/cart/cart_view.dart';
-import 'package:e_commerce_full/ecommerce/home/home_view.dart';
-import 'package:e_commerce_full/ecommerce/profile/profile_view.dart';
 import 'package:e_commerce_full/main_view.dart';
+
+import '../../views/cart/cart_view.dart';
+import '../../views/home/home_view.dart';
+import '../../views/profile/profile_view.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'View,Route',

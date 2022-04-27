@@ -1,5 +1,8 @@
 import 'package:e_commerce_full/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/cart/cart_bloc.dart';
 
 class ProductView extends StatelessWidget {
   final ProductModel? productModel;
@@ -91,30 +94,39 @@ class ProductView extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            Container(
-              alignment: Alignment.center,
-              height: 50,
-              width: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.black,
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    'Add to Cart',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4!
-                        .copyWith(color: Colors.white),
+            BlocBuilder<CartBloc, CartState>(
+              builder: (context, state) {
+                return InkWell(
+                  onTap: () {
+                    context.read<CartBloc>().add(AddProduct(productModel!));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.black,
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Add to Cart',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4!
+                              .copyWith(color: Colors.white),
+                        ),
+                        const Icon(
+                          Icons.add_circle_sharp,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
                   ),
-                  const Icon(
-                    Icons.add_circle_sharp,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
+                );
+              },
             ),
           ],
         ),
