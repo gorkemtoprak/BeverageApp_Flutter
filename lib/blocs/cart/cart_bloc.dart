@@ -13,10 +13,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<RemoveProduct>(_onRemoveProduct);
   }
 
-  void _onLoadCart(
-    LoadCart event,
-    Emitter<CartState> emit,
-  ) async {
+  void _onLoadCart(LoadCart event, Emitter<CartState> emit) async {
     emit(CartLoading());
     try {
       await Future<void>.delayed(const Duration(seconds: 1));
@@ -26,10 +23,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  void _onAddProduct(
-    AddProduct event,
-    Emitter<CartState> emit,
-  ) {
+  void _onAddProduct(AddProduct event, Emitter<CartState> emit) {
     if (state is CartLoaded) {
       try {
         emit(
@@ -46,10 +40,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  void _onRemoveProduct(
-    RemoveProduct event,
-    Emitter<CartState> emit,
-  ) {
+  void _onRemoveProduct(RemoveProduct event, Emitter<CartState> emit) {
     if (state is CartLoaded) {
       try {
         emit(

@@ -7,14 +7,16 @@ import 'package:e_commerce_full/models/product_model.dart';
 import 'package:e_commerce_full/viewmodels/checkout_view_model.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../core/enums/payment_enums.dart';
 import '../cart/cart_bloc.dart';
+import '../payment/payment_bloc.dart';
 
 part 'checkout_event.dart';
 part 'checkout_state.dart';
 
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   final CartBloc _cartBloc;
-  // final PaymentBloc _paymentBloc;
+  final PaymentBloc _paymentBloc;
   final CheckOutViewModel _checkoutRepository;
   StreamSubscription? _cartSubscription;
   StreamSubscription? _paymentSubscription;
@@ -22,10 +24,10 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
   CheckoutBloc({
     required CartBloc cartBloc,
-    // required PaymentBloc paymentBloc,
+    required PaymentBloc paymentBloc,
     required CheckOutViewModel checkoutRepository,
   })  : _cartBloc = cartBloc,
-        // _paymentBloc = paymentBloc,
+        _paymentBloc = paymentBloc,
         _checkoutRepository = checkoutRepository,
         super(
           cartBloc.state is CartLoaded
@@ -53,19 +55,16 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       },
     );
 
-    // _paymentSubscription = _paymentBloc.stream.listen((state) {
-    //   if (state is PaymentLoaded) {
-    //     add(
-    //       UpdateCheckout(paymentMethod: state.paymentMethod),
-    //     );
-    //   }
-    // });
+    _paymentSubscription = _paymentBloc.stream.listen((state) {
+      if (state is PaymentLoaded) {
+        add(
+          UpdateCheckout(paymentMethod: state.paymentMethod),
+        );
+      }
+    });
   }
 
-  void _onUpdateCheckout(
-    UpdateCheckout event,
-    Emitter<CheckoutState> emit,
-  ) {
+  void _onUpdateCheckout(UpdateCheckout event, Emitter<CheckoutState> emit) {
     if (state is CheckoutLoaded) {
       final state = this.state as CheckoutLoaded;
       emit(
@@ -79,16 +78,14 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
           address: event.address ?? state.address,
           city: event.city ?? state.city,
           country: event.country ?? state.country,
-          // paymentMethod: event.paymentMethod ?? state.paymentMethod,
+          paymentMethod: event.paymentMethod ?? state.paymentMethod,
         ),
       );
     }
   }
 
   void _onConfirmCheckout(
-    ConfirmCheckout event,
-    Emitter<CheckoutState> emit,
-  ) async {
+      ConfirmCheckout event, Emitter<CheckoutState> emit) async {
     _checkoutSubscription?.cancel();
     if (state is CheckoutLoaded) {
       try {

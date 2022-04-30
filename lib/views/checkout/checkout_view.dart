@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_full/shared/custom_text_form_field.dart';
 import 'package:e_commerce_full/viewmodels/checkout_view_model.dart';
 import 'package:e_commerce_full/views/cart/widgets/order_summary_widget.dart';
+import 'package:e_commerce_full/views/confirm_orders/confirm_orders_view.dart';
+import 'package:e_commerce_full/views/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -116,6 +119,49 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   const SizedBox(
                     height: 20,
                   ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.black,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const PaymentView(),
+                                  ));
+                            },
+                            child: Text(
+                              'Select a Payment Method',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     'Order Summary',
                     style: Theme.of(context).textTheme.headline3,
@@ -126,6 +172,11 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   GestureDetector(
                     onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ConfirmOrdersView(),
+                          ));
                       context
                           .read<CheckoutBloc>()
                           .add(ConfirmCheckout(checkout: state.checkout));

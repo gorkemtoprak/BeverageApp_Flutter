@@ -24,7 +24,7 @@ class ProfileView extends StatelessWidget {
                   ));
             },
             icon: const Icon(
-              Icons.shopping_cart_checkout_outlined,
+              Icons.receipt_long_sharp,
               color: Colors.black,
             ),
           )

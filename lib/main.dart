@@ -1,5 +1,6 @@
 import 'package:e_commerce_full/blocs/cart/cart_bloc.dart';
 import 'package:e_commerce_full/blocs/category/category_bloc.dart';
+import 'package:e_commerce_full/blocs/payment/payment_bloc.dart';
 import 'package:e_commerce_full/blocs/product/product_bloc.dart';
 import 'package:e_commerce_full/core/theme/app_theme.dart';
 import 'package:e_commerce_full/viewmodels/category_view_model.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
+        BlocProvider(create: (_) => PaymentBloc()..add(LoadPaymentMethod())),
         BlocProvider(
           create: (_) => CategoryBloc(categoryRepository: CategoryViewModel())
             ..add(LoadCategories()),
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),
-            // paymentBloc: context.read<PaymentBloc>(),
+            paymentBloc: context.read<PaymentBloc>(),
             checkoutRepository: CheckOutViewModel(),
           ),
         ),
