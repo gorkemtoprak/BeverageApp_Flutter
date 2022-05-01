@@ -1,5 +1,10 @@
-import 'package:e_commerce_full/views/checkout/checkout_view.dart';
+import 'package:e_commerce_full/views/register/register_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/profile/profile_bloc.dart';
+import '../../core/repository/auth_repository.dart';
+import '../login/login_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -20,11 +25,11 @@ class ProfileView extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CheckoutView(),
+                    builder: (context) => const RegisterView(),
                   ));
             },
             icon: const Icon(
-              Icons.receipt_long_sharp,
+              Icons.logout_rounded,
               color: Colors.black,
             ),
           )
@@ -32,7 +37,88 @@ class ProfileView extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
-      body: Column(),
+      body: BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (context, state) {
+          if (state is ProfileLoading) {
+            return const Center(
+              child: CircularProgressIndicator(color: Colors.black),
+            );
+          }
+          if (state is ProfileLoaded) {
+            return Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  context.read<AuthRepository>().signOut();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(),
+                  primary: Colors.black,
+                  fixedSize: const Size(200, 40),
+                ),
+                child: Text(
+                  'Sign Out',
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            );
+          }
+          if (state is ProfileUnauthenticated) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      'You are not logged in!',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(),
+                    primary: Colors.black,
+                    fixedSize: Size(200, 40),
+                  ),
+                  child: Text(
+                    'Login',
+                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/signup');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(),
+                    primary: Colors.white,
+                    fixedSize: Size(200, 40),
+                  ),
+                  child: Text(
+                    'Signup',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return const Text('Something went wrong');
+          }
+        },
+      ),
     );
   }
 }

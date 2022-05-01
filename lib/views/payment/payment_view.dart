@@ -1,10 +1,9 @@
 import 'package:e_commerce_full/core/enums/payment_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:pay/pay.dart';
+import 'package:pay/pay.dart';
 
 import '../../blocs/payment/payment_bloc.dart';
-import '../../shared/apple_pay.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({Key? key}) : super(key: key);
@@ -52,7 +51,7 @@ class PaymentView extends StatelessWidget {
             }
             if (state is PaymentLoaded) {
               return ListView(
-                children: const [
+                children: [
                   // RawApplePayButton(
                   //   style: ApplePayButtonStyle.black,
                   //   type: ApplePayButtonType.buy,
@@ -65,17 +64,17 @@ class PaymentView extends StatelessWidget {
                   //     // products: ProductModel.products,
                   //     // total: '10',
                   //     ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  // RawGooglePayButton(
-                  //   style: GooglePayButtonStyle.black,
-                  //   type: GooglePayButtonType.buy,
-                  //   onPressed: () {
-                  //     context.read<PaymentBloc>().add(const SelectPaymentMethod(
-                  //         paymentMethod: PaymentMethod.googlePay));
-                  //   },
-                  // ),
+                  RawGooglePayButton(
+                    style: GooglePayButtonStyle.black,
+                    type: GooglePayButtonType.buy,
+                    onPressed: () {
+                      context.read<PaymentBloc>().add(const SelectPaymentMethod(
+                          paymentMethod: PaymentMethod.googlePay));
+                    },
+                  ),
                   // GooglePayWidget()
                 ],
               );
