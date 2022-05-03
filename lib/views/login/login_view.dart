@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,13 +35,14 @@ class LoginView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const EmailInput(),
+            const LoginEmailInput(),
             const SizedBox(height: 10),
-            const PasswordInput(),
+            const LoginPasswordInput(),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 context.read<LoginCubit>().logInWithCredentials();
+                await AutoRouter.of(context).pushNamed('/main');
               },
               style: ElevatedButton.styleFrom(
                 shape: const RoundedRectangleBorder(),

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../cubits/login/login_cubit.dart';
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({Key? key}) : super(key: key);
+class LoginPasswordInput extends StatelessWidget {
+  const LoginPasswordInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

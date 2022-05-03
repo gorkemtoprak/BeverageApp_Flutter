@@ -6,10 +6,12 @@ class CustomTextFormField extends StatelessWidget {
     required this.title,
     this.onChanged,
     this.textEditingController,
+    this.initialValue,
   }) : super(key: key);
 
   final String? title;
   final TextEditingController? textEditingController;
+  final String? initialValue;
   final Function(String)? onChanged;
 
   @override
@@ -27,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
+              initialValue: initialValue,
               controller: textEditingController,
               onChanged: onChanged,
               decoration: const InputDecoration(

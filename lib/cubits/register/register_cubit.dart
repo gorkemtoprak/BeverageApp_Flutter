@@ -27,9 +27,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<void> signUpWithCredentials() async {
-    if (!state.isFormValid || state.status == LoginRegisterStatus.submitting) {
-      return;
-    }
+    if (!state.isFormValid || state.status == LoginRegisterStatus.submitting) {}
+
     emit(state.copyWith(status: LoginRegisterStatus.submitting));
     try {
       var authUser = await _authRepository.signUp(

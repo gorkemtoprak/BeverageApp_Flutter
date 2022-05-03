@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_full/shared/custom_text_form_field.dart';
 import 'package:e_commerce_full/viewmodels/checkout_view_model.dart';
 import 'package:e_commerce_full/views/cart/widgets/order_summary_widget.dart';
@@ -68,6 +67,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   CustomTextFormField(
+                    initialValue: '',
                     onChanged: (value) {
                       context
                           .read<CheckoutBloc>()
@@ -78,6 +78,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Name',
+                    initialValue: '',
                     textEditingController: nameController,
                     onChanged: (value) {
                       context
@@ -91,6 +92,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Address',
+                    initialValue: '',
                     textEditingController: addressController,
                     onChanged: (value) {
                       context
@@ -100,6 +102,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'City',
+                    initialValue: '',
                     textEditingController: cityController,
                     onChanged: (value) {
                       context
@@ -109,6 +112,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Country',
+                    initialValue: '',
                     textEditingController: countryController,
                     onChanged: (value) {
                       context

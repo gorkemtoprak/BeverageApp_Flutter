@@ -15,7 +15,7 @@ dependencies:
   #UTILS
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.1.1
-  pay: ^1.0.8 #There is no any certificate for the iOS
+  # pay: ^1.0.8 #There is no any certificate for the iOS
 
   #FIREBASE
   firebase_core: ^1.15.0

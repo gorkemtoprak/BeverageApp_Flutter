@@ -20,57 +20,41 @@ import '../../views/register/register_view.dart';
       path: '/main',
       initial: true,
       children: [
-        RedirectRoute(
-          path: '',
-          redirectTo: 'home',
-        ),
-        AutoRoute(
-          page: HomeView,
-          name: 'home',
-          path: 'home',
-          initial: true,
-        ),
-        AutoRoute(
-          page: CartView,
-          name: 'cart',
-          path: 'cart',
-        ),
-        AutoRoute(
-          page: ProfileView,
-          name: 'profile',
-          path: 'profile',
-        ),
-        AutoRoute(
-          page: LoginView,
-          name: 'login',
-          path: 'login',
-        ),
-        AutoRoute(
-          page: RegisterView,
-          name: 'register',
-          path: 'register',
-        ),
-        AutoRoute(
-          page: CategoryView,
-          name: 'category',
-          path: 'category',
-        ),
-        AutoRoute(
-          page: CheckoutView,
-          name: 'checkout',
-          path: 'checkout',
-        ),
-        AutoRoute(
-          page: ConfirmOrdersView,
-          name: 'confirm',
-          path: 'confirm',
-        ),
-        AutoRoute(
-          page: PaymentView,
-          name: 'payment',
-          path: 'payment',
-        ),
+        RedirectRoute(path: '', redirectTo: 'home'),
+        AutoRoute(initial: true, page: HomeView, name: 'home', path: 'home'),
+        AutoRoute(page: CartView, name: 'cart', path: 'cart'),
+        AutoRoute(page: ProfileView, name: 'profile', path: 'profile'),
       ],
+    ),
+    AutoRoute(
+      page: LoginView,
+      name: 'login',
+      path: '/login',
+    ),
+    AutoRoute(
+      page: RegisterView,
+      name: 'register',
+      path: '/register',
+    ),
+    AutoRoute(
+      page: CategoryView,
+      name: 'category',
+      path: '/category',
+    ),
+    AutoRoute(
+      page: CheckoutView,
+      name: 'checkout',
+      path: '/checkout',
+    ),
+    AutoRoute(
+      page: ConfirmOrdersView,
+      name: 'confirm',
+      path: '/confirm',
+    ),
+    AutoRoute(
+      page: PaymentView,
+      name: 'payment',
+      path: '/payment',
     ),
   ],
 )

@@ -1,9 +1,9 @@
 import 'package:e_commerce_full/cubits/register/register_cubit.dart';
-import 'package:e_commerce_full/views/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../login/widgets/password_input_widget.dart';
+import '../login/login_view.dart';
+import 'widgets/password_input_widget.dart';
 import 'widgets/user_inputs_widget.dart';
 
 class RegisterView extends StatelessWidget {
@@ -89,7 +89,7 @@ class RegisterView extends StatelessWidget {
                         );
                   },
                 ),
-                const PasswordInput(),
+                const RegisterPasswordInput(),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {

@@ -14,6 +14,7 @@ class UserRepository extends BaseUserRepository {
 
   @override
   Future<void> createUser(UserModel user) async {
+    print('Creating a new User');
     await _firebaseFirestore
         .collection('users')
         .doc(user.id)
@@ -23,11 +24,13 @@ class UserRepository extends BaseUserRepository {
   @override
   Stream<UserModel> getUser(String userId) {
     print('Getting user data from Cloud Firestore');
-    return _firebaseFirestore.collection('users').doc(userId).snapshots().map(
-      (snap) {
-        return UserModel.fromSnapshot(snap);
-      },
-    );
+    return _firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .snapshots()
+        .map((snap) {
+      return UserModel.fromSnapshot(snap);
+    });
   }
 
   @override
@@ -37,7 +40,7 @@ class UserRepository extends BaseUserRepository {
         .doc(user.id)
         .update(user.toDocument())
         .then(
-          (value) => print('User document updated.'),
+          (value) => print('Users info updated'),
         );
   }
 }

@@ -34,10 +34,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     });
   }
 
-  void _onLoadProfile(
-    LoadProfile event,
-    Emitter<ProfileState> emit,
-  ) {
+  void _onLoadProfile(LoadProfile event, Emitter<ProfileState> emit) {
     if (event.authUser != null) {
       _userRepository.getUser(event.authUser!.uid).listen((user) {
         add(
@@ -49,10 +46,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  void _onUpdateProfile(
-    UpdateProfile event,
-    Emitter<ProfileState> emit,
-  ) {
+  void _onUpdateProfile(UpdateProfile event, Emitter<ProfileState> emit) {
+    _userRepository.updateUser(event.user);
     emit(ProfileLoaded(user: event.user));
   }
 
