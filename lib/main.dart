@@ -84,11 +84,11 @@ class MyApp extends StatelessWidget {
               authRepository: context.read<AuthRepository>(),
             ),
           ),
-          BlocProvider(
+          BlocProvider<ProfileBloc>(
             create: (context) => ProfileBloc(
-              authBloc: context.read<AuthBloc>(),
+              authBloc: BlocProvider.of<AuthBloc>(context),
               userRepository: context.read<UserRepository>(),
-            ),
+            )..add(LoadProfile(context.read<AuthBloc>().state.authUser)),
           ),
         ],
         child: MaterialApp.router(

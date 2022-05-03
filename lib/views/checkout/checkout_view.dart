@@ -67,7 +67,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   CustomTextFormField(
-                    initialValue: '',
+                    // initialValue: 'Email',
                     onChanged: (value) {
                       context
                           .read<CheckoutBloc>()
@@ -78,7 +78,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Name',
-                    initialValue: '',
+                    // initialValue: 'Name',
                     textEditingController: nameController,
                     onChanged: (value) {
                       context
@@ -92,7 +92,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Address',
-                    initialValue: '',
+                    // initialValue: 'Address',
                     textEditingController: addressController,
                     onChanged: (value) {
                       context
@@ -102,7 +102,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'City',
-                    initialValue: '',
+                    // initialValue: 'city',
                     textEditingController: cityController,
                     onChanged: (value) {
                       context
@@ -112,7 +112,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                   ),
                   CustomTextFormField(
                     title: 'Country',
-                    initialValue: '',
+                    // initialValue: 'Country',
                     textEditingController: countryController,
                     onChanged: (value) {
                       context

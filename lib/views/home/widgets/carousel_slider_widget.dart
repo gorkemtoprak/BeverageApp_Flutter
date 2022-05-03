@@ -16,7 +16,7 @@ class HeroCarouselCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         if (product == null) {
           Navigator.push(
@@ -33,12 +33,13 @@ class HeroCarouselCard extends StatelessWidget {
           top: 20.0,
           bottom: 10.0,
         ),
+        width: MediaQuery.of(context).size.width,
         child: Stack(
-          children: <Widget>[
+          children: [
             Image.network(
               category!.imageUrl,
               fit: BoxFit.cover,
-              width: 1000.0,
+              width: MediaQuery.of(context).size.width,
             ),
             Positioned(
               bottom: 0.0,

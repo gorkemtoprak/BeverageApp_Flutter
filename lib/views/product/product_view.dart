@@ -47,7 +47,7 @@ class ProductView extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
               child: Image.network(
                 productModel!.imageUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 height: 220,
                 width: MediaQuery.of(context).size.width,
               ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce_full/views/register/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,6 +23,7 @@ class ProfileView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              context.read<AuthRepository>().signOut();
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -131,26 +133,7 @@ class ProfileView extends StatelessWidget {
                           );
                     },
                   ),
-                  Expanded(child: Container()),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<AuthRepository>().signOut();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const RoundedRectangleBorder(),
-                        primary: Colors.black,
-                        fixedSize: const Size(200, 40),
-                      ),
-                      child: Text(
-                        'Sign Out',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  // Expanded(child: Container()),
                 ],
               ),
             );
@@ -191,7 +174,11 @@ class ProfileView extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/signup');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterView(),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const RoundedRectangleBorder(),
@@ -199,7 +186,7 @@ class ProfileView extends StatelessWidget {
                     fixedSize: const Size(200, 40),
                   ),
                   child: Text(
-                    'Signup',
+                    'Register',
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ),

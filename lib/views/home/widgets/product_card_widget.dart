@@ -35,12 +35,13 @@ class ProductCardWidget extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 2.5,
               child: Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(10),
                 ),
+                elevation: 3,
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         product![index].imageUrl,
                         fit: BoxFit.cover,

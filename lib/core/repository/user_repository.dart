@@ -8,13 +8,12 @@ import '../base/base_user_repository.dart';
 class UserRepository extends BaseUserRepository {
   final FirebaseFirestore _firebaseFirestore;
 
-  UserRepository({
-    FirebaseFirestore? firebaseFirestore,
-  }) : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
+  UserRepository({FirebaseFirestore? firebaseFirestore})
+      : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
   Future<void> createUser(UserModel user) async {
-    print('Creating a new User');
+    print('Creating a new user');
     await _firebaseFirestore
         .collection('users')
         .doc(user.id)
@@ -23,7 +22,7 @@ class UserRepository extends BaseUserRepository {
 
   @override
   Stream<UserModel> getUser(String userId) {
-    print('Getting user data from Cloud Firestore');
+    print('Getting user info');
     return _firebaseFirestore
         .collection('users')
         .doc(userId)

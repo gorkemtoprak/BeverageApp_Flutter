@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/product/product_bloc.dart';
+import '../product/product_view.dart';
 
 class CategoryView extends StatelessWidget {
   final CategoryModel? categoryModel;
@@ -61,60 +62,73 @@ class CategoryView extends StatelessWidget {
                 ),
                 itemCount: categoryProducts.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width / 2.5,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: Image.network(
-                              categoryProducts[index].imageUrl,
-                              fit: BoxFit.cover,
-                              height: 150,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductView(
+                              productModel: categoryProducts[index],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      categoryProducts[index].name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline5!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                    Text(
-                                      '\$${categoryProducts[index].price}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.add_circle,
-                                    color: Colors.black,
+                          ));
+                    },
+                    child: SizedBox(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width / 2.5,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: Image.network(
+                                categoryProducts[index].imageUrl,
+                                fit: BoxFit.cover,
+                                height: 150,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        categoryProducts[index].name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5!
+                                            .copyWith(color: Colors.black),
+                                      ),
+                                      Text(
+                                        '\$${categoryProducts[index].price}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6!
+                                            .copyWith(color: Colors.black),
+                                      ),
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.add_circle,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );
