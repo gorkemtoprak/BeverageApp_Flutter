@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/login/login_cubit.dart';
 import 'widgets/email_input_widget.dart';
+import 'widgets/google_login_button.dart';
 import 'widgets/password_input_widget.dart';
 
 class LoginView extends StatelessWidget {
@@ -57,6 +58,8 @@ class LoginView extends StatelessWidget {
                     .copyWith(color: Colors.white),
               ),
             ),
+            const SizedBox(height: 10),
+            const GoogleLoginButton(),
           ],
         ),
       ),

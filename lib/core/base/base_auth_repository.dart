@@ -10,6 +10,8 @@ abstract class BaseAuthRepository {
     required String password,
   });
 
+  Future<void> logInWithGoogle();
+
   Future<void> logInWithEmailAndPassword({
     required String email,
     required String password,
