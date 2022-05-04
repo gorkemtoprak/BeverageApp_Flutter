@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/cart/cart_bloc.dart';
+import '../../../shared/error_widget.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   const OrderSummaryWidget({Key? key}) : super(key: key);
@@ -100,7 +101,7 @@ class OrderSummaryWidget extends StatelessWidget {
             ],
           );
         } else {
-          return const Text('error');
+          return const CustomErrorWidget();
         }
       },
     );

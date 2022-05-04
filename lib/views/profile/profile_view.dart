@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/profile/profile_bloc.dart';
 import '../../core/repository/auth_repository.dart';
 import '../../shared/custom_text_form_field.dart';
+import '../../shared/error_widget.dart';
 import '../login/login_view.dart';
 
 class ProfileView extends StatelessWidget {
@@ -193,7 +194,7 @@ class ProfileView extends StatelessWidget {
               ],
             );
           } else {
-            return const Text('Something went wrong');
+            return const CustomErrorWidget();
           }
         },
       ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/checkout/checkout_bloc.dart';
+import '../../shared/error_widget.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({Key? key}) : super(key: key);
@@ -209,7 +210,7 @@ class _CheckoutViewState extends State<CheckoutView> with CheckOutViewModel {
                 ],
               );
             } else {
-              return const Text('Something went wrong!');
+              return const CustomErrorWidget();
             }
           },
         ),

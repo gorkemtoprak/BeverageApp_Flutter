@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/cart/cart_bloc.dart';
 import '../../../models/product_model.dart';
+import '../../../shared/error_widget.dart';
 import '../../product/product_view.dart';
 
 class ProductCardWidget extends StatelessWidget {
@@ -95,7 +96,7 @@ class ProductCardWidget extends StatelessWidget {
                                   ),
                                 );
                               } else {
-                                return const Text('Something went wrong!');
+                                return const CustomErrorWidget();
                               }
                             },
                           ),

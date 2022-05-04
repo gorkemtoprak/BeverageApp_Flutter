@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/product/product_bloc.dart';
+import '../../shared/error_widget.dart';
 import '../product/product_view.dart';
 
 class CategoryView extends StatelessWidget {
@@ -135,7 +136,7 @@ class CategoryView extends StatelessWidget {
                 },
               );
             } else {
-              return const Text('Something went wrong');
+              return const CustomErrorWidget();
             }
           },
         ),

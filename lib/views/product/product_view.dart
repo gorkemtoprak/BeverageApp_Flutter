@@ -80,7 +80,7 @@ class ProductView extends StatelessWidget {
             ),
             const Divider(),
             Text(
-              "Product Information",
+              'Product Information',
               style: Theme.of(context).textTheme.headline3,
             ),
             const SizedBox(

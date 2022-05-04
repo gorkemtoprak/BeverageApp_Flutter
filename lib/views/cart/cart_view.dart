@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
+import '../../shared/error_widget.dart';
 
 class CartView extends StatelessWidget {
   const CartView({Key? key}) : super(key: key);
@@ -119,7 +120,7 @@ class CartView extends StatelessWidget {
               ),
             );
           } else {
-            return const Text('Something went wrong!');
+            return const CustomErrorWidget();
           }
         },
       ),

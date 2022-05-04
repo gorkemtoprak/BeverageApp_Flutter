@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/category/category_bloc.dart';
 import '../../blocs/product/product_bloc.dart';
+import '../../shared/error_widget.dart';
 import 'widgets/carousel_slider_widget.dart';
 import 'widgets/product_card_widget.dart';
 import 'widgets/section_title_widget.dart';
@@ -112,7 +113,7 @@ class HomeView extends StatelessWidget {
                               .toList(),
                         );
                       } else {
-                        return const Text('error');
+                        return const CustomErrorWidget();
                       }
                     },
                   ),
