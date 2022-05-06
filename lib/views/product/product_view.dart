@@ -45,11 +45,13 @@ class ProductView extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(
-                productModel!.imageUrl,
-                fit: BoxFit.contain,
-                height: 220,
-                width: MediaQuery.of(context).size.width,
+              child: InteractiveViewer(
+                child: Image.network(
+                  productModel!.imageUrl,
+                  fit: BoxFit.contain,
+                  height: 220,
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
             ),
             const SizedBox(

@@ -2,15 +2,16 @@ import 'package:e_commerce_full/cubits/register/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UserInput extends StatelessWidget {
-  const UserInput({
-    Key? key,
-    required this.onChanged,
-    required this.labelText,
-  }) : super(key: key);
-
+class RegisterTextFieldWidget extends StatelessWidget {
   final Function(String)? onChanged;
-  final String labelText;
+  final String? labelText;
+  final bool obscureText;
+  const RegisterTextFieldWidget({
+    Key? key,
+    this.onChanged,
+    this.labelText,
+    this.obscureText = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class UserInput extends StatelessWidget {
         return TextField(
           onChanged: onChanged,
           decoration: InputDecoration(labelText: labelText),
+          obscureText: obscureText,
         );
       },
     );

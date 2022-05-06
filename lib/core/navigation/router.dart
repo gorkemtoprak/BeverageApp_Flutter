@@ -4,6 +4,7 @@ import 'package:e_commerce_full/views/category/category_view.dart';
 import 'package:e_commerce_full/views/checkout/checkout_view.dart';
 import 'package:e_commerce_full/views/confirm_orders/confirm_orders_view.dart';
 import 'package:e_commerce_full/views/payment/payment_view.dart';
+import 'package:e_commerce_full/views/welcome/welcome_view.dart';
 
 import '../../views/cart/cart_view.dart';
 import '../../views/home/home_view.dart';
@@ -18,7 +19,6 @@ import '../../views/register/register_view.dart';
       page: MainView,
       name: 'main',
       path: '/main',
-      initial: true,
       children: [
         RedirectRoute(path: '', redirectTo: 'home'),
         AutoRoute(initial: true, page: HomeView, name: 'home', path: 'home'),
@@ -55,6 +55,12 @@ import '../../views/register/register_view.dart';
       page: PaymentView,
       name: 'payment',
       path: '/payment',
+    ),
+    AutoRoute(
+      page: WelcomeView,
+      name: 'welcome',
+      path: '/welcome',
+      initial: true,
     ),
   ],
 )

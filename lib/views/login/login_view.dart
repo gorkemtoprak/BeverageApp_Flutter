@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/login/login_cubit.dart';
-import 'widgets/email_input_widget.dart';
+import 'widgets/login_text_field_widget.dart';
 import 'widgets/google_login_button.dart';
-import 'widgets/password_input_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -36,9 +35,21 @@ class LoginView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const LoginEmailInput(),
+            LoginTextFieldWidget(
+              onChanged: (email) {
+                context.read<LoginCubit>().emailChanged(email);
+              },
+              labelText: 'Email',
+              obscureText: false,
+            ),
             const SizedBox(height: 10),
-            const LoginPasswordInput(),
+            LoginTextFieldWidget(
+              onChanged: (password) {
+                context.read<LoginCubit>().passwordChanged(password);
+              },
+              labelText: 'Password',
+              obscureText: true,
+            ),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {

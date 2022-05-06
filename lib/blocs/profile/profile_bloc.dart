@@ -35,6 +35,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   void _onLoadProfile(LoadProfile event, Emitter<ProfileState> emit) {
+    //Auth user returns null check this..
     if (event.authUser != null) {
       _userRepository.getUser(event.authUser!.uid).listen((user) {
         add(UpdateProfile(user: user));

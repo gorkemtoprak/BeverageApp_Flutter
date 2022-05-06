@@ -1,6 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_full/models/product_model.dart';
 import 'package:e_commerce_full/views/cart/widgets/order_summary_widget.dart';
-import 'package:e_commerce_full/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/order_summary_product.dart';
@@ -75,12 +75,8 @@ class ConfirmOrdersView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeView(),
-                      ));
+                onTap: () async {
+                  await AutoRouter.of(context).pushNamed('/main');
                 },
                 child: Container(
                   padding: const EdgeInsets.only(

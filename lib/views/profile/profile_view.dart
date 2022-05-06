@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_full/views/register/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,13 +24,9 @@ class ProfileView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               context.read<AuthRepository>().signOut();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginView(),
-                  ));
+              await AutoRouter.of(context).pushNamed('/welcome');
             },
             icon: const Icon(
               Icons.logout_rounded,

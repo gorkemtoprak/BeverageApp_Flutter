@@ -1,10 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_full/cubits/register/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../login/login_view.dart';
-import 'widgets/password_input_widget.dart';
-import 'widgets/user_inputs_widget.dart';
+import 'widgets/register_text_field_widget.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class RegisterView extends StatelessWidget {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                UserInput(
+                RegisterTextFieldWidget(
                   labelText: 'Email',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -46,7 +45,7 @@ class RegisterView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 10),
-                UserInput(
+                RegisterTextFieldWidget(
                   labelText: 'Full Name',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -55,7 +54,7 @@ class RegisterView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 10),
-                UserInput(
+                RegisterTextFieldWidget(
                   labelText: 'Country',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -64,7 +63,7 @@ class RegisterView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 10),
-                UserInput(
+                RegisterTextFieldWidget(
                   labelText: 'City',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -73,7 +72,7 @@ class RegisterView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 10),
-                UserInput(
+                RegisterTextFieldWidget(
                   labelText: 'Address',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -81,7 +80,8 @@ class RegisterView extends StatelessWidget {
                         );
                   },
                 ),
-                UserInput(
+                const SizedBox(height: 10),
+                RegisterTextFieldWidget(
                   labelText: 'ZIP Code',
                   onChanged: (value) {
                     context.read<RegisterCubit>().userChanged(
@@ -89,16 +89,19 @@ class RegisterView extends StatelessWidget {
                         );
                   },
                 ),
-                const RegisterPasswordInput(),
+                const SizedBox(height: 10),
+                RegisterTextFieldWidget(
+                  labelText: 'Password',
+                  obscureText: true,
+                  onChanged: (password) {
+                    context.read<RegisterCubit>().passwordChanged(password);
+                  },
+                ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     context.read<RegisterCubit>().signUpWithCredentials();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginView(),
-                        ));
+                    await AutoRouter.of(context).pushNamed('/login');
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const RoundedRectangleBorder(),
